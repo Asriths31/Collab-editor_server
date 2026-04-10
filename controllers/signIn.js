@@ -18,5 +18,8 @@ export default async function signIn(req,res){
         }
         const token=jwt.sign({userName:user.userName,id:user._id},process.env.jwt_secret_key,{expiresIn:"6h"})
         console.log("Token :",token)
-        res.status(201).cookie("token",token,{httpOnly:true,sameSite:"lax"}).json({message:"Login Successfull",token:token})
+        res.status(201).cookie("token",token,{ httpOnly: true,
+  secure: true,           
+  sameSite: "none",    
+  path: "/",}).json({message:"Login Successfull",token:token})
 }
