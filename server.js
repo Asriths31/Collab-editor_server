@@ -58,17 +58,17 @@ const room=new Map()
 const socketToUser=new Map()
 
 io.on("connection",async(socket)=>{
-    console.log("User Connected",socket.id)
+    // console.log("User Connected",socket.id)
     const token=socket.request.headers?.cookie?.split("=")[1]
     const user=await getUserDetails(token)
   // console.log({user,token})
     // if()
   socket.on("join-room",(docId)=>{
-    console.log("User Joined in room",docId)
+    // console.log("User Joined in room",docId)
     socket.join(docId)
     if(!room.has(docId)) room.set(docId,new Map())
     const userRoom=room.get(docId)
-    console.log({userRoom})
+    // console.log({userRoom})
     userRoom.set(user?.id,{userId:user?.id,userName:user?.userName}) 
 
     if(!userRoom.has(user?.id)){
@@ -106,7 +106,7 @@ io.on("connection",async(socket)=>{
   //   io.to(docId).emit("members_in_room",members_in_room)
   // })
   socket.on("disconnect", () => {
-    console.log("User disconnected:", socket.id);
+    // console.log("User disconnected:", socket.id);
     const userDetails=socketToUser?.get(socket.id)
     const usersRoom=room.get(userDetails?.docId)
     usersRoom?.delete(userDetails?.userId)

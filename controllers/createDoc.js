@@ -33,11 +33,11 @@ export async function addData(req,res){
 
         const result=await Docs.updateOne({_id:docId},
             {$set:{value}})
-        console.log({result})
+        // console.log({result})
         return res.status(200).json({message:"Updated successfully"})
     }
     catch(err){
-        console.log("errorrr",err)
+        console.log("errorr in addData",err)
         return res.status(500).json({message:err.message})
     }
 }
