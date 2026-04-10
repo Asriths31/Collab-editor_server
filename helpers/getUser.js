@@ -7,6 +7,7 @@ function getUserDetails(req){
     let jwtString
     if(typeof(req)==="string"){
         jwtString=req
+        console.log("Jwt string from sockets")
     }
     else{
      jwtString=req?.cookies?.token
