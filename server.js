@@ -31,8 +31,13 @@ dotenv.config()
 
 const app=express()
 
+const origins=[
+  "https://collab-editor-qcbq.vercel.app",
+  "http://localhost:5173"
+]
+
 app.use(cors({  
-    origin:"http://localhost:5173",
+    origin:origins,
     credentials:true
 }))
 app.use(express.json())
@@ -43,7 +48,7 @@ const server=http.createServer(app)
 
 const io=new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: origins,
     methods: ["GET", "POST"],
     credentials:true
   }
