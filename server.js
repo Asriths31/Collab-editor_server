@@ -33,7 +33,8 @@ const app=express()
 
 const origins=[
   "https://collab-editor-qcbq.vercel.app",
-  "http://localhost:5173"
+  "http://localhost:5173",
+  "https://collab-editor-three.vercel.app"
 ]
 
 app.use(cors({  
