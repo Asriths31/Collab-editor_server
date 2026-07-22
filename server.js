@@ -67,7 +67,7 @@ io.on("connection",async(socket)=>{
     const user=await getUserDetails(token)
   console.log({user,token})
     // if()
-  socket.on("join-room",(docId)=>{
+  socket.on("join-room",async(docId)=>{
     // console.log("User Joined in room",docId)
     socket.join(docId)
     if(!room.has(docId)) room.set(docId,new Map())
