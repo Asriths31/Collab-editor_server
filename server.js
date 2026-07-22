@@ -4,6 +4,7 @@ import { routes } from "./routes.js"
 import mongoose from "mongoose"
 import cors from "cors"
 import cookieParser from "cookie-parser"
+import * as cookie from "cookie"
 import WebSocket from "ws"
 import http from "http"
 
@@ -60,9 +61,11 @@ const socketToUser=new Map()
 
 io.on("connection",async(socket)=>{
     // console.log("User Connected",socket.id)
-    const token=socket.request.headers?.cookie?.split("=")[1]
+    const rawCookie=socket.request.headers?.cookie
+    // const indexOfToken=cookie.indexOf("token")
+    const token=rawCookie&&cookie.parseCookie(rawCookie).token
     const user=await getUserDetails(token)
-  // console.log({user,token})
+  console.log({user,token})
     // if()
   socket.on("join-room",(docId)=>{
     // console.log("User Joined in room",docId)
